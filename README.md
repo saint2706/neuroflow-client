@@ -55,8 +55,11 @@ To build a standalone desktop application for your operating system:
 npm run electron:build
 ```
 
+<<<<<<< HEAD
 The compiled application will be generated in the `dist-electron/` directory.
 
+=======
+>>>>>>> c52d6256553c63dd01090a9dc1a498fb9b7ead22
 ## Contributing
 
 We welcome contributions! To get started:
