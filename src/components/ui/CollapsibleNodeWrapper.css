@@ -1,0 +1,346 @@
+/* ============================================================================
+   COLLAPSIBLE NODE WRAPPER STYLES
+   Standardized styling for all NeuroFlow nodes with collapse/expand
+   ============================================================================ */
+
+@import '../../styles/node-variables.css';
+
+/* ========== Node Container ========== */
+.collapsible-node-wrapper {
+    width: var(--node-width-base);
+    min-height: var(--node-min-height);
+    background: #ffffff;
+    border-radius: var(--node-border-radius);
+    box-shadow: var(--node-shadow);
+    transition: box-shadow var(--hover-animation-duration) var(--hover-animation-timing),
+        height var(--collapse-animation-duration) var(--collapse-animation-timing);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* Subtle border for definition */
+}
+
+.collapsible-node-wrapper.overflow-visible {
+    overflow: visible;
+}
+
+.collapsible-node-wrapper:hover {
+    box-shadow: var(--node-shadow-hover);
+}
+
+.collapsible-node-wrapper.collapsed {
+    box-shadow: var(--node-shadow-collapsed);
+    height: var(--node-collapsed-height);
+}
+
+/* ========== Node Header ========== */
+.collapsible-node-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--node-header-height);
+    padding: 0 var(--node-padding);
+    background: var(--node-header-bg);
+    /* Default fallback */
+    border-radius: var(--node-border-radius) var(--node-border-radius) 0 0;
+    color: var(--node-header-text);
+    user-select: none;
+    position: relative;
+    z-index: var(--z-node-header);
+    transition: background 0.3s ease;
+}
+
+.collapsible-node-header.clickable {
+    cursor: pointer;
+    transition: opacity var(--hover-animation-duration) var(--hover-animation-timing);
+}
+
+.collapsible-node-header.clickable:hover {
+    opacity: 0.95;
+    filter: brightness(1.05);
+}
+
+.collapsible-node-header.clickable:active {
+    opacity: 0.9;
+}
+
+/* Focus styles for accessibility */
+.collapsible-node-header:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: -2px;
+}
+
+/* ========== Header Left Section ========== */
+.collapsible-node-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+}
+
+.collapsible-node-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--node-header-icon-size);
+    flex-shrink: 0;
+}
+
+.collapsible-node-title-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.collapsible-node-title {
+    font-size: var(--node-title-size);
+    font-weight: var(--node-title-weight);
+    color: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.collapsible-node-subtitle {
+    font-size: var(--node-subtitle-size);
+    font-weight: var(--node-subtitle-weight);
+    color: rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    animation: fadeIn var(--collapse-animation-duration) var(--collapse-animation-timing);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-2px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== Header Right Section ========== */
+.collapsible-node-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/* Info Button */
+.collapsible-node-info-button {
+    display: flex;
+    align-items: center;
+    z-index: var(--z-node-info-button);
+}
+
+/* Collapse/Expand Chevron */
+.collapsible-node-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 6px;
+    color: var(--chevron-color);
+    font-size: var(--chevron-size);
+    cursor: pointer;
+    transition: all var(--hover-animation-duration) var(--hover-animation-timing);
+    padding: 0;
+}
+
+.collapsible-node-chevron:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: var(--chevron-hover-color);
+    transform: scale(1.05);
+}
+
+.collapsible-node-chevron:active {
+    transform: scale(0.95);
+}
+
+.collapsible-node-chevron:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 2px;
+}
+
+/* Status Indicator */
+.collapsible-node-status {
+    display: flex;
+    align-items: center;
+    z-index: var(--z-node-status);
+}
+
+/* ========== Collapsed Summary ========== */
+.collapsible-node-summary {
+    padding: var(--node-padding-small) var(--node-padding);
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    font-size: var(--node-summary-size);
+    color: var(--node-summary-color);
+    line-height: 1.5;
+    animation: slideDown var(--collapse-animation-duration) var(--collapse-animation-timing);
+    z-index: var(--z-node-collapsed-summary);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    to {
+        opacity: 1;
+        max-height: 100px;
+        padding-top: var(--node-padding-small);
+        padding-bottom: var(--node-padding-small);
+    }
+}
+
+/* ========== Node Body ========== */
+.collapsible-node-body {
+    padding: var(--node-padding);
+    background: #ffffff;
+    transition: all var(--collapse-animation-duration) var(--collapse-animation-timing);
+    overflow: hidden;
+}
+
+.collapsible-node-body.overflow-visible {
+    overflow: visible;
+}
+
+.collapsible-node-body.hidden {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.collapsible-node-body.visible {
+    max-height: 2000px;
+    opacity: 1;
+    pointer-events: auto;
+    animation: expandBody var(--collapse-animation-duration) var(--collapse-animation-timing);
+}
+
+@keyframes expandBody {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== CATEGORY VISUALIZATION RULES (Monochrome) ========== */
+
+.collapsible-node-wrapper {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+}
+
+.collapsible-node-header {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.collapsible-node-subtitle {
+    color: var(--text-secondary);
+}
+
+.collapsible-node-chevron {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.collapsible-node-chevron:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+/* Category Indicators (Minimalist borders instead of full backgrounds) */
+.node-category-data-source {
+    border-left: 4px solid #000000;
+}
+
+.node-category-preprocessing {
+    border-left: 4px solid #343A40;
+}
+
+.node-category-dim-reduction {
+    border-left: 4px solid #495057;
+}
+
+.node-category-regression {
+    border-left: 4px solid #6C757D;
+}
+
+.node-category-classification {
+    border-left: 4px solid #ADB5BD;
+}
+
+.node-category-clustering {
+    border-left: 4px solid #DEE2E6;
+}
+
+.node-category-neural-network {
+    border-left: 4px solid #000000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.node-category-visualization {
+    border-left: 4px solid #000000;
+}
+
+.node-category-miscellaneous {
+    border-left: 4px solid #CED4DA;
+}
+
+
+/* ========== Responsive Adjustments ========== */
+@media (max-width: 768px) {
+    .collapsible-node-wrapper {
+        width: calc(var(--node-width-base) * 0.9);
+    }
+
+    .collapsible-node-header {
+        padding: 0 var(--node-padding-small);
+    }
+
+    .collapsible-node-body {
+        padding: var(--node-padding-small);
+    }
+
+    .collapsible-node-title {
+        font-size: 13px;
+    }
+}
+
+/* ========== Print Styles ========== */
+@media print {
+    .collapsible-node-wrapper.collapsed .collapsible-node-body {
+        max-height: none;
+        opacity: 1;
+        display: block;
+    }
+
+    .collapsible-node-chevron {
+        display: none;
+    }
+}

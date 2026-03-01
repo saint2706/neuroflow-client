@@ -1,0 +1,254 @@
+.cluster-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(2px);
+}
+
+.cluster-modal-content {
+    background: white;
+    border-radius: 12px;
+    width: 750px;
+    max-width: 95vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    animation: modalFadeIn 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.cluster-modal-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cluster-modal-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #1a202c;
+    font-weight: 600;
+}
+
+.view-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.mode-toggle {
+    display: flex;
+    background: #f1f5f9;
+    padding: 3px;
+    border-radius: 6px;
+}
+
+.mode-toggle button {
+    border: none;
+    background: transparent;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #64748b;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.mode-toggle button.active {
+    background: white;
+    color: #3b82f6;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #a0aec0;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.close-btn:hover {
+    color: #e53e3e;
+    background: #fff5f5;
+}
+
+.cluster-modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.visualization-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.axis-selectors {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 8px;
+}
+
+.selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.selector label {
+    font-size: 0.9rem;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.selector select {
+    padding: 6px 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    background-color: white;
+    color: #2d3748;
+}
+
+.cluster-plot {
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.axis-label {
+    font-size: 13px;
+    fill: #4a5568;
+    font-weight: 600;
+}
+
+.variance-info {
+    font-size: 0.85rem;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 4px 12px;
+    border-radius: 12px;
+}
+
+.cluster-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    color: #4a5568;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.legend-symbol {
+    font-weight: bold;
+    color: #2d3748;
+}
+
+.cluster-tooltip {
+    position: absolute;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    pointer-events: none;
+    z-index: 100;
+    min-width: 150px;
+    border: 1px solid #e2e8f0;
+    font-size: 0.8rem;
+    color: #4a5568;
+    animation: tooltipFadeIn 0.1s ease-out;
+}
+
+@keyframes tooltipFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -90%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -100%);
+    }
+}
+
+.tooltip-header {
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.tooltip-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.tooltip-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.tooltip-label {
+    color: #718096;
+}
+
+.tooltip-value {
+    color: #2d3748;
+    font-family: monospace;
+}
+
+.tooltip-more {
+    font-style: italic;
+    color: #a0aec0;
+    font-size: 0.75rem;
+    margin-top: 2px;
+}

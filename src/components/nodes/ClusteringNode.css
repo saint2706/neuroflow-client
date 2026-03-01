@@ -1,0 +1,219 @@
+/* Clustering Node Standardized Styles */
+
+/* 1. Status Dots */
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.status-dot.status-not-configured {
+    background: var(--status-not-configured);
+}
+
+.status-dot.status-configured {
+    background: var(--status-configured);
+    animation: pulse 2s infinite;
+}
+
+.status-dot.status-training {
+    background: var(--status-training);
+    animation: pulse 1s infinite;
+}
+
+.status-dot.status-trained {
+    background: var(--status-trained);
+}
+
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* 2. Content Layout */
+.clustering-node {
+    font-size: 13px;
+}
+
+.cluster-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cluster-row {
+    margin-bottom: 12px;
+}
+
+.cluster-row label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #4a5568;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+}
+
+.cluster-row select,
+.cluster-row input:not([type="checkbox"]):not([type="radio"]) {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #e1e8f0;
+    border-radius: 6px;
+    background: #f8fafc;
+    color: #2d3748;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.cluster-row select:focus,
+.cluster-row input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: var(--bg-primary);
+    box-shadow: 0 0 0 3px var(--shadow-color);
+}
+
+
+/* Stepper Buttons (- +) */
+.cluster-row .stepper-btn {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    background: white;
+    color: #4a5568;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cluster-row .stepper-btn:hover:not(:disabled) {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    border-color: var(--accent-color);
+}
+
+
+.cluster-row .stepper-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Feature Columns List */
+.cluster-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 160px;
+    overflow-y: auto;
+    padding: 8px;
+    background: #f8fafc;
+    border: 1px solid #e1e8f0;
+    border-radius: 6px;
+}
+
+.cluster-columns::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cluster-columns::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 3px;
+}
+
+.cluster-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px;
+    background: white;
+    border: 1px solid #edf2f7;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 12px;
+}
+
+.cluster-option:hover {
+    border-color: #f687b3;
+    background: #fff5f7;
+}
+
+.cluster-option input[type="checkbox"] {
+    accent-color: var(--accent-color);
+    cursor: pointer;
+}
+
+
+/* Action Button */
+.cluster-actions {
+    margin-top: 16px;
+    display: flex;
+}
+
+.cluster-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--node-shadow);
+    transition: all 0.2s;
+}
+
+
+.cluster-btn:hover:not(:disabled) {
+    box-shadow: 0 4px 10px rgba(237, 100, 166, 0.4);
+    transform: translateY(-1px);
+}
+
+.cluster-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background: #a0aec0;
+}
+
+/* Messages */
+.cluster-msg {
+    margin-top: 12px;
+    padding: 10px;
+    background: var(--bg-secondary);
+    border-left: 3px solid var(--accent-color);
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--text-primary);
+}
+
+
+/* Results */
+.cluster-results {
+    margin-top: 16px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.cluster-results div {
+    margin-bottom: 4px;
+}

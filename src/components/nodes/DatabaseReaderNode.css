@@ -1,0 +1,280 @@
+/* DatabaseReaderNode.css - Adapted for CollapsibleNodeWrapper */
+
+/* Custom Handles */
+.database-reader-node .custom-handle {
+  width: 12px !important;
+  height: 12px !important;
+  background: #2563eb !important;
+  /* Blue for DB */
+  border: 2px solid #fff !important;
+  border-radius: 50% !important;
+  z-index: 10;
+}
+
+/* Content Layout */
+.database-reader-node .node-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Form Styles */
+.database-reader-node .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.database-reader-node label {
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #475569;
+}
+
+.database-reader-node .form-input,
+.database-reader-node .form-select,
+.database-reader-node .form-textarea {
+  padding: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9em;
+  width: 100%;
+  background: #fff;
+  color: #1e293b;
+}
+
+.database-reader-node .form-input:focus,
+.database-reader-node .form-select:focus,
+.database-reader-node .form-textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.database-reader-node .db-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.database-reader-node .full-width {
+  grid-column: span 2;
+}
+
+/* Config Sections */
+.database-reader-node .config-section {
+  border-left: 2px solid #e2e8f0;
+  padding-left: 10px;
+  margin-bottom: 12px;
+  transition: border-color 0.3s;
+}
+
+.database-reader-node .config-section.active {
+  border-left-color: #2563eb;
+}
+
+.database-reader-node .section-title {
+  font-weight: 700;
+  font-size: 0.8em;
+  color: #64748b;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Success Card (Loaded State) */
+.database-reader-node .success-card {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+
+.database-reader-node .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.database-reader-node .card-tag {
+  background: #dcfce7;
+  color: #166534;
+  font-size: 0.75em;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.database-reader-node .card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.database-reader-node .stat-label {
+  font-size: 0.75em;
+  color: #166534;
+  opacity: 0.9;
+}
+
+.database-reader-node .stat-value {
+  font-weight: 700;
+  font-size: 1.1em;
+  color: #14532d;
+}
+
+/* Tables */
+.database-reader-node .table-wrapper {
+  max-height: 200px;
+  overflow: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: white;
+  margin-top: 4px;
+}
+
+.database-reader-node .premium-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85em;
+}
+
+.database-reader-node .premium-table th {
+  background: #f8fafc;
+  position: sticky;
+  top: 0;
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #475569;
+  font-weight: 600;
+  z-index: 5;
+}
+
+.database-reader-node .premium-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  white-space: nowrap;
+}
+
+/* Buttons */
+.database-reader-node .btn {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.database-reader-node .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.database-reader-node .btn.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.database-reader-node .btn.primary:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.database-reader-node .btn.secondary {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.database-reader-node .btn.secondary:hover:not(:disabled) {
+  background: #e2e8f0;
+}
+
+.database-reader-node .btn.danger {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.database-reader-node .btn.danger:hover:not(:disabled) {
+  background: #fecaca;
+}
+
+.database-reader-node .button-group-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.database-reader-node .flex-btn {
+  flex: 1;
+}
+
+/* Mode Toggle */
+.database-reader-node .mode-toggle {
+  display: flex;
+  background: #f1f5f9;
+  padding: 2px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.database-reader-node .toggle-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 6px;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.database-reader-node .toggle-btn.active {
+  background: white;
+  color: #2563eb;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Status Badge */
+.database-reader-node .status-badge {
+  margin-top: 8px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8em;
+}
+
+.database-reader-node .status-badge.success {
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.database-reader-node .status-badge.error {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+/* Empty State */
+.database-reader-node .empty-state {
+  text-align: center;
+  padding: 24px;
+  color: #94a3b8;
+}
+
+.database-reader-node .empty-icon {
+  font-size: 2em;
+  margin-bottom: 8px;
+  opacity: 0.5;
+}

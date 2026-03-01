@@ -1,0 +1,215 @@
+/* FeatureSelectorNode.css */
+
+/* Content Scoping */
+.feature-selector-node .fs-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Sections */
+.feature-selector-node .fs-section {
+  background: #f8fafc;
+  border-radius: 6px;
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.feature-selector-node .section-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 8px;
+}
+
+.feature-selector-node .fs-actions-top {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.feature-selector-node .btn-small {
+  padding: 2px 8px;
+  font-size: 11px;
+  background: white;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #4a5568;
+}
+
+.feature-selector-node .btn-small:hover {
+  background: #edf2f7;
+  color: #2d3748;
+}
+
+/* Column Selection */
+.feature-selector-node .column-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 6px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+}
+
+.feature-selector-node .column-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.feature-selector-node .column-option:hover {
+  background: #edf2f7;
+}
+
+.feature-selector-node .column-option input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: #667eea;
+}
+
+.feature-selector-node .column-option span {
+  font-size: 12px;
+  color: #4a5568;
+}
+
+/* Actions */
+.feature-selector-node .fs-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.feature-selector-node .btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.feature-selector-node .btn.primary {
+  background: #667eea;
+  color: white;
+}
+
+.feature-selector-node .btn.primary:hover:not(:disabled) {
+  background: #5a67d8;
+  transform: translateY(-1px);
+}
+
+.feature-selector-node .btn.secondary {
+  background: #edf2f7;
+  color: #4a5568;
+}
+
+.feature-selector-node .btn.secondary:hover {
+  background: #e2e8f0;
+}
+
+.feature-selector-node .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Error */
+.feature-selector-node .error-text {
+  background: #fff5f5;
+  border: 1px solid #fed7d7;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 12px;
+  color: #e53e3e;
+  margin-top: 8px;
+}
+
+/* Placeholder */
+.feature-selector-node .fs-placeholder {
+  padding: 24px;
+  text-align: center;
+  color: #a0aec0;
+  font-size: 12px;
+  font-style: italic;
+  background: #f8fafc;
+  border-radius: 6px;
+  border: 1px dashed #cbd5e0;
+}
+
+/* Preview */
+.feature-selector-node .fs-preview {
+  margin-top: 12px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.feature-selector-node .preview-header {
+  background: #f7fafc;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 8px 10px;
+}
+
+.feature-selector-node .preview-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+/* Table */
+.feature-selector-node .table-scroll {
+  max-height: 200px;
+  overflow: auto;
+}
+
+.feature-selector-node table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.feature-selector-node th {
+  background: #667eea;
+  color: white;
+  position: sticky;
+  top: 0;
+  padding: 6px 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.feature-selector-node td {
+  padding: 6px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #333;
+  white-space: nowrap;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.feature-selector-node tr:nth-child(even) td {
+  background: #fcfcfc;
+}
+
+/* Scrollbars */
+.feature-selector-node .column-checkboxes::-webkit-scrollbar,
+.feature-selector-node .table-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.feature-selector-node .column-checkboxes::-webkit-scrollbar-thumb,
+.feature-selector-node .table-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 3px;
+}

@@ -1,0 +1,101 @@
+/* ============================================================================
+   NEUROFLOW - GLOBAL NODE VARIABLES
+   Standardized variables for consistent node styling across the application
+   ============================================================================ */
+
+:root {
+   /* ========== Node Dimensions ========== */
+   --node-width-base: 360px;
+   /* Standard node width (increased by ~15%) */
+   --node-width-wide: 440px;
+   /* Wide nodes (visualizers, complex forms) */
+   --node-width-narrow: 300px;
+   /* Narrow nodes (simple utilities) */
+   --node-min-height: 120px;
+   /* Minimum node height */
+   --node-header-height: 48px;
+   /* Consistent header height */
+   --node-collapsed-height: 88px;
+   /* Height when collapsed (header + summary) */
+
+   /* ========== Spacing & Padding ========== */
+   --node-padding: 16px;
+   /* Internal padding */
+   --node-padding-small: 12px;
+   /* Compact padding */
+   --node-padding-large: 20px;
+   /* Spacious padding */
+   --node-section-gap: 16px;
+   /* Gap between sections */
+   --node-element-gap: 12px;
+   /* Gap between elements */
+
+   /* ========== Border & Radius ========== */
+   --node-border-radius: 12px;
+   /* Rounded corners */
+   --node-border-radius-small: 8px;
+   /* Smaller radius for inner elements */
+   --node-border-width: 1px;
+   /* Border thickness */
+
+   /* ========== Shadows ========== */
+   /* ========== Shadows ========== */
+   --node-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+   --node-shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.05);
+   --node-shadow-active: 0 4px 6px rgba(0, 0, 0, 0.05);
+   --node-shadow-collapsed: none;
+
+   /* ========== Animations ========== */
+   --collapse-animation-duration: 250ms;
+   --collapse-animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+   --hover-animation-duration: 150ms;
+   --hover-animation-timing: ease-out;
+
+   /* ========== Header Styles (Monochrome) ========== */
+   --node-header-bg: #FFFFFF;
+   --node-header-text: #000000;
+   --node-header-icon-size: 20px;
+
+   /* ========== Status Indicators (Monochrome Shades) ========== */
+   --status-not-configured: #DEE2E6;
+   /* Light gray */
+   --status-configured: #6C757D;
+   /* Medium gray */
+   --status-training: #343A40;
+   /* Dark gray */
+   --status-trained: #000000;
+   /* Black */
+   --status-error: #212529;
+   /* Dark gray with emphasis */
+
+
+   /* ========== Collapse/Expand ========== */
+   --chevron-size: 16px;
+   --chevron-color: rgba(255, 255, 255, 0.9);
+   --chevron-hover-color: #ffffff;
+
+   /* ========== Typography ========== */
+   --node-title-size: 15px;
+   /* Slight increase for readability */
+   --node-title-weight: 600;
+   --node-subtitle-size: 13px;
+   --node-subtitle-weight: 400;
+   --node-summary-size: 13px;
+   --node-summary-color: #64748b;
+
+   /* ========== Interactive Elements ========== */
+   --button-height: 38px;
+   --input-height: 38px;
+   --select-height: 38px;
+
+   /* ========== Z-Index Layers ========== */
+   --z-node-base: 1;
+   --z-node-header: 2;
+   --z-node-info-button: 3;
+   --z-node-status: 3;
+   --z-node-collapsed-summary: 2;
+}
+
+/* ============================================================================
+   DARK MODE SUPPORT (Future Enhancement)
+   ============================================================================ */

@@ -1,0 +1,28 @@
+.node-info-button {
+    /* Positioned by parent flex container now */
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: hsl(var(--muted-foreground));
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    opacity: 0.6;
+}
+
+.node-info-button:hover {
+    color: hsl(var(--primary));
+    background: hsl(var(--secondary));
+    opacity: 1;
+}
+
+/* Ensure it works well on dark backgrounds if simple nodes use them */
+.node-info-button svg {
+    display: block;
+}

@@ -1,0 +1,44 @@
+.basic-node {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--node-border-radius);
+  padding: var(--node-padding);
+  min-width: 220px;
+  box-shadow: var(--node-shadow);
+}
+
+
+.basic-node__body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.basic-node__label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Custom Handle Styling */
+.basic-node .react-flow__handle {
+  background: white;
+  border: 2px solid #3b82f6;
+  width: 10px;
+  height: 10px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.basic-node .react-flow__handle:hover {
+  background: #3b82f6;
+  transform: scale(1.2);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+.basic-node .react-flow__handle-top {
+  top: -5px;
+}
+
+.basic-node .react-flow__handle-bottom {
+  bottom: -5px;
+}

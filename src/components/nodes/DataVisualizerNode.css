@@ -1,0 +1,194 @@
+/* Data Visualizer Node - Dark/Glass Theme */
+.data-visualizer-node {
+  background: rgba(30, 30, 35, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  width: 580px;
+  min-height: 540px;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  color: #e2e8f0;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.data-visualizer-node:hover {
+  box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.dv-title {
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #f8fafc;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.02em;
+}
+
+.dv-controls {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dv-chart-type,
+.dv-column-select {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dv-chart-type label,
+.dv-column-select label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.dv-chart-type select,
+.dv-column-select select {
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 13px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #f1f5f9;
+  cursor: pointer;
+  transition: all 0.2s;
+  appearance: none;
+  /* Remove default arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+}
+
+.dv-chart-type select:focus,
+.dv-column-select select:focus {
+  outline: none;
+  border-color: #6366f1;
+  /* Primary color */
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.dv-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dv-placeholder {
+  font-size: 0.95em;
+  color: #94a3b8;
+  text-align: center;
+  padding: 40px;
+  background: transparent;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Chart SVG Styling */
+.chart-svg {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  background: transparent !important;
+  /* Override white background */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Interactive elements */
+.scatter-point {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scatter-point:hover {
+  r: 8;
+  opacity: 1 !important;
+  stroke: rgba(255, 255, 255, 0.8);
+  stroke-width: 2px;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+}
+
+.bar-element {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bar-element:hover {
+  opacity: 0.8 !important;
+  /* Brighter */
+  filter: brightness(1.2);
+}
+
+/* Custom handles */
+.custom-handle {
+  width: 12px !important;
+  height: 12px !important;
+  background-color: #6366f1 !important;
+  /* Primary color handle */
+  border: 2px solid #1e1e24 !important;
+  /* Match bg */
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+  z-index: 10;
+}
+
+.data-visualizer-node:hover .custom-handle,
+.react-flow__node.selected .custom-handle {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3);
+}
+
+/* Axis and Label overrides for dark mode charts - handled in component via props ideally, but CSS overrides here */
+.chart-svg text {
+  fill: #cbd5e1 !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.chart-svg line {
+  stroke: rgba(255, 255, 255, 0.1) !important;
+}
+
+.chart-svg rect:first-child {
+  fill: transparent !important;
+  /* Transparent background for chart area */
+}

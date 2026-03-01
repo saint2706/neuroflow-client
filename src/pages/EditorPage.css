@@ -1,0 +1,108 @@
+/* Overall editor container */
+.editor-container-new {
+  display: flex;
+  flex-direction: column;
+  /* Stack children vertically */
+  height: 100vh;
+  width: 100vw;
+  background-color: hsl(var(--background));
+  /* Light background for the overall page */
+  position: relative;
+  /* For absolute positioning of toolbars */
+  color: hsl(var(--foreground));
+}
+
+/* Main canvas area, taking up space between toolbars */
+.canvas-area {
+  flex-grow: 1;
+  /* Make it fill available vertical space */
+  position: relative;
+  /* For positioning instructions and custom elements */
+  background-color: hsl(var(--background));
+  /* White background for the main drawing area */
+  overflow: hidden;
+  /* Ensure nothing spills out */
+  display: flex;
+  /* Helps ReactFlowWrapper take full size */
+}
+
+/* React Flow wrapper, filling the canvas area */
+.reactflow-wrapper-new {
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  /* Needed for positioning elements within it */
+}
+
+/* Fixed dotted background that doesn't scale with zoom */
+.reactflow-wrapper-new {
+  background-color: hsl(var(--background));
+  background-image: radial-gradient(hsl(var(--border)) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Ensure the background stays fixed during zoom */
+.react-flow__pane {
+  background: transparent !important;
+}
+
+.react-flow__background {
+  background: transparent !important;
+}
+
+/* Example: Add Node button for testing */
+.add-node-button {
+  position: absolute;
+  bottom: 70px;
+  /* Above bottom toolbar */
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  color: var(--bg-primary);
+  font-size: 2em;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px var(--shadow-color);
+
+  z-index: 500;
+  transition: background-color 0.2s;
+}
+
+.add-node-button:hover {
+  filter: brightness(1.1);
+}
+
+/* Sidebar positioning */
+/* Main Layout Container */
+.main-content-layout {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+}
+
+/* Ensure Sidebar works in this layout (overrides if needed, but Sidebar.css should handle it) */
+/* .sidebar is handled in Sidebar.css now */
+
+.sidebar.slide-out {
+  animation: slideOutLeft 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

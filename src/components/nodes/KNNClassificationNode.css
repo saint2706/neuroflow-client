@@ -1,0 +1,241 @@
+/* KNNClassificationNode.css */
+
+/* Content Scoping */
+.knn-classification-node .knn-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Sections */
+.knn-classification-node .knn-section {
+    background: #f8fafc;
+    border-radius: 6px;
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+}
+
+.knn-classification-node .section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+}
+
+/* Rows and Inputs */
+.knn-classification-node .knn-row {
+    margin-bottom: 10px;
+}
+
+.knn-classification-node .knn-row:last-child {
+    margin-bottom: 0;
+}
+
+.knn-classification-node label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 4px;
+}
+
+.knn-classification-node select,
+.knn-classification-node input[type="text"],
+.knn-classification-node input[type="number"] {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    font-size: 13px;
+    background: white;
+    color: #2d3748;
+}
+
+.knn-classification-node select:focus,
+.knn-classification-node input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+/* Column Selection */
+.knn-classification-node .column-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 120px;
+    overflow-y: auto;
+    padding: 6px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+}
+
+.knn-classification-node .column-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.knn-classification-node .column-option:hover {
+    background: #edf2f7;
+}
+
+.knn-classification-node .column-option span {
+    font-size: 12px;
+    color: #4a5568;
+}
+
+/* Number Stepper */
+.knn-classification-node .stepper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.knn-classification-node .stepper-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #edf2f7;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.knn-classification-node .stepper-btn:hover:not(:disabled) {
+    background: #e2e8f0;
+}
+
+.knn-classification-node .stepper-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.knn-classification-node .stepper-input {
+    width: 60px !important;
+    text-align: center;
+}
+
+.knn-classification-node .stepper-label {
+    margin-left: 6px;
+    font-size: 11px;
+    color: #718096;
+}
+
+/* Actions */
+.knn-classification-node .knn-actions {
+    margin-top: 8px;
+}
+
+.knn-classification-node .btn {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.knn-classification-node .btn.primary {
+    background: #667eea;
+    color: white;
+}
+
+.knn-classification-node .btn.primary:hover:not(:disabled) {
+    background: #5a67d8;
+}
+
+.knn-classification-node .btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Messages */
+.knn-classification-node .msg {
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.knn-classification-node .msg.error {
+    background: #fff5f5;
+    border: 1px solid #fed7d7;
+    color: #c53030;
+}
+
+.knn-classification-node .msg.warning {
+    background: #fffbeb;
+    border: 1px solid #fbd38d;
+    color: #9c4221;
+}
+
+.knn-classification-node .msg.success {
+    background: #c6f6d5;
+    border: 1px solid #9ae6b4;
+    color: #22543d;
+}
+
+/* Results */
+.knn-classification-node .results-section {
+    margin-top: 12px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.knn-classification-node .results-header {
+    background: #f7fafc;
+    padding: 8px 10px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 12px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.knn-classification-node .metrics-grid {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.knn-classification-node .metric-item {
+    font-size: 11px;
+    color: #4a5568;
+}
+
+.knn-classification-node .metric-item strong {
+    color: #2d3748;
+    display: block;
+    font-size: 14px;
+}
+
+.knn-classification-node .results-footer {
+    padding: 8px 10px;
+    background: #f7fafc;
+    border-top: 1px solid #e2e8f0;
+    font-size: 11px;
+    color: #718096;
+}
+
+/* Scrollbars */
+.knn-classification-node .column-checkboxes::-webkit-scrollbar {
+    width: 6px;
+}
+
+.knn-classification-node .column-checkboxes::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 3px;
+}
