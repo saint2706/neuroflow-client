@@ -4,6 +4,7 @@ dist/
 build/
 coverage/
 .npm/
+.agents/
 
 # Environment variables
 .env
@@ -62,4 +63,3 @@ dist/
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
-.agents/
