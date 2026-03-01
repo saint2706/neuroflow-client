@@ -1,21 +1,24 @@
 # Neuroflow Client (`neuroflow-client`)
 
-The frontend and Electron wrapper for the Neuroflow IDE. This component provides the drag-and-drop interface for building machine learning workflows.
+The frontend and Electron wrapper for the Neuroflow IDE. This component provides the drag-and-drop interface for building machine learning workflows, visualizing data, and orchestrating models.
 
-## 🚀 Features
+## Features
 
-- **Visual Workflow Builder**: Powered by `React Flow`.
-- **Real-time Data Visualization**: Integrated `Chart.js` for plotting.
-- **Microservices Orchestration**: Seamlessly communicates with the `neuroflow-logic` backend.
-- **Cross-Platform Desktop App**: Built with `Electron` for a native experience.
+- **Visual Workflow Builder**: Powered by `React Flow`, allowing users to construct complex ML pipelines visually.
+- **Extensive Node Library**: Supports various nodes including readers (CSV, DB), cleaners, visualizers, regression, classification, clustering, and neural networks.
+- **Real-time Data Visualization**: Integrated `Chart.js` for plotting data distributions, evaluation metrics, and model results (e.g., Dendrograms, Cluster Scatter Plots, MLP Loss Curves).
+- **Modern UI Components**: Styled using `Tailwind CSS` and `shadcn/ui` for a sleek, responsive, and accessible interface.
+- **Cross-Platform Desktop App**: Built with `Electron` for a native, standalone experience with local file persistence (`.nf` files).
 
-## 🛠️ Technology Stack
+## Technology Stack
 
-- **Frontend**: React 19, Vite, CSS (Vanilla with modern tokens).
-- **Runtime**: Node.js, Electron.
-- **Icons**: React Icons (Fa, Md, etc.).
+- **Framework**: React 19, Vite
+- **Styling**: Tailwind CSS, shadcn/ui components
+- **Flow Engine**: React Flow
+- **Icons**: React Icons (Fa, Md, etc.)
+- **Desktop Wrapper**: Electron, Node.js
 
-## 📦 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -35,23 +38,26 @@ The frontend and Electron wrapper for the Neuroflow IDE. This component provides
 
 ### Development
 
-To start the development server for the client and Electron:
+To start the development server for the client and Electron simultaneously:
 ```bash
-npm run dev:electron
+npm run electron:dev
 ```
 
-> [!IMPORTANT]
-> **Independent Backend**: You must also start the `neuroflow-logic` backend service in a separate terminal. See [neuroflow-logic/README.md](../neuroflow-logic/README.md) for instructions.
+> **Note on Vite Aliases**: The project uses relative paths (e.g., `../../utils/cn`) instead of Vite aliases (`@/utils/cn`) for internal imports to ensure compatibility with the Electron build process.
 
+> [!IMPORTANT]
+> **Independent Backend**: You must also start the `neuroflow-logic` backend service in a separate terminal for the ML nodes to execute. See [neuroflow-logic/README.md](../neuroflow-logic/README.md) for instructions.
 
 ### Building for Production
 
-To build a standalone desktop application:
+To build a standalone desktop application for your operating system:
 ```bash
 npm run electron:build
 ```
 
-## 🤝 Contributing
+The compiled application will be generated in the `dist-electron/` directory.
+
+## Contributing
 
 We welcome contributions! To get started:
 1. **Fork** the repository.
@@ -63,9 +69,9 @@ We welcome contributions! To get started:
 
 ### Coding Standards
 - Use functional components and hooks for React.
-- Follow the established CSS naming conventions in `src/styles`.
-- Ensure all new nodes are registered in the `OBJECT_POOL` and documented.
+- When creating new UI components, prefer utilizing or extending the existing `shadcn/ui` components found in `src/components/ui/`.
+- Ensure all new nodes are properly registered in `src/pages/EditorPage.tsx` and documented in `src/data/nodeInfo.ts`.
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the root LICENSE file for details.
