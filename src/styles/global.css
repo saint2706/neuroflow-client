@@ -38,7 +38,7 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--sys-font-family, 'Inter', system-ui, sans-serif);
   }
 }
 

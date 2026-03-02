@@ -58,6 +58,8 @@ import LogisticRegressionNode from '../components/nodes/LogisticRegressionNode';
 import NaiveBayesNode from '../components/nodes/NaiveBayesNode';
 import DataVisualizerNode from '../components/nodes/DataVisualizerNode';
 import ModelEvaluatorNode from '../components/nodes/ModelEvaluatorNode';
+import SettingsModal from '../components/ui/SettingsModal';
+import useFontLoader from '../hooks/useFontLoader';
 import FeatureSelectorNode from '../components/nodes/FeatureSelectorNode';
 import PCANode from '../components/nodes/PCANode';
 import SVDNode from '../components/nodes/SVDNode';
@@ -138,6 +140,9 @@ const EditorPage = () => {
 
   const [activeTool, setActiveTool] = useState('select');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  // Initialize global fonts
+  useFontLoader();
   const [isBooting, setIsBooting] = useState(true);
   const [showFlow, setShowFlow] = useState(false);
 
@@ -826,6 +831,8 @@ const EditorPage = () => {
           modelData={mlpResultsModal}
         />
       )}
+
+      <SettingsModal />
     </div>
   );
 };

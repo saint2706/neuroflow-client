@@ -1,6 +1,6 @@
 import {
   MdMenu, MdOutlineMouse, MdOutlinePanTool,
-  MdLightMode, MdDarkMode, MdSave, MdFolderOpen, MdTimeline
+  MdLightMode, MdDarkMode, MdSave, MdFolderOpen, MdTimeline, MdSettings
 } from 'react-icons/md';
 import { useTheme } from '../../context/ThemeContext';
 import { useAppStore } from '../../store/useAppStore';
@@ -31,7 +31,7 @@ interface TopToolbarProps {
 
 const TopToolbar = ({ activeTool, setActiveTool, onMenuClick, onSave, onLoad }: TopToolbarProps) => {
   const { theme, toggleTheme } = useTheme();
-  const { edgeType, setEdgeType } = useAppStore();
+  const { edgeType, setEdgeType, setIsSettingsModalOpen } = useAppStore();
 
   return (
     <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 flex justify-center pointer-events-none">
@@ -124,6 +124,24 @@ const TopToolbar = ({ activeTool, setActiveTool, onMenuClick, onSave, onLoad }: 
             </TooltipTrigger>
             <TooltipContent side="bottom" className="text-xs">
               <p>Pan Tool (H)</p>
+            </TooltipContent>
+          </Tooltip>
+
+          <Separator orientation="vertical" className="h-5 mx-0.5 bg-border/50" />
+
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsSettingsModalOpen(true)}
+                className="rounded-full w-9 h-9 hover:bg-secondary/80 hover:text-gray-600 transition-colors"
+              >
+                <MdSettings className="h-5 w-5" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="bottom" className="text-xs">
+              <p>Settings</p>
             </TooltipContent>
           </Tooltip>
 
