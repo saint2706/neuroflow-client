@@ -40,37 +40,35 @@ import NodeInfoPanel from '../components/ui/NodeInfoPanel';
 import FloatingEdge from '../components/edges/FloatingEdge';
 import { MdVisibility } from 'react-icons/md';
 import { FaProjectDiagram, FaBrain } from 'react-icons/fa';
+import GameOfLifeLoading from '../components/ui/GameOfLifeLoading';
 
-// Lazy load node components
-const CsvReaderNode = React.lazy(() => import('../components/nodes/CsvReaderNode'));
-const DatabaseReaderNode = React.lazy(() => import('../components/nodes/DatabaseReaderNode'));
-const LinearRegressionNode = React.lazy(() => import('../components/nodes/LinearRegressionNode'));
-const MultiLinearRegressionNode = React.lazy(() => import('../components/nodes/MultiLinearRegressionNode'));
-const PolynomialRegressionNode = React.lazy(() => import('../components/nodes/PolynomialRegressionNode'));
-const KNNRegressionNode = React.lazy(() => import('../components/nodes/KNNRegressionNode'));
-const KNNClassificationNode = React.lazy(() => import('../components/nodes/KNNClassificationNode'));
-const DataCleanerNode = React.lazy(() => import('../components/nodes/DataCleanerNode'));
-const ModelVisualizerNode = React.lazy(() => import('../components/nodes/ModelVisualizerNode'));
-const EncoderNode = React.lazy(() => import('../components/nodes/EncoderNode'));
-const NormalizerNode = React.lazy(() => import('../components/nodes/NormalizerNode'));
-const LogisticRegressionNode = React.lazy(() => import('../components/nodes/LogisticRegressionNode'));
-const NaiveBayesNode = React.lazy(() => import('../components/nodes/NaiveBayesNode'));
-const DataVisualizerNode = React.lazy(() => import('../components/nodes/DataVisualizerNode'));
-const ModelEvaluatorNode = React.lazy(() => import('../components/nodes/ModelEvaluatorNode'));
-const FeatureSelectorNode = React.lazy(() => import('../components/nodes/FeatureSelectorNode'));
-const PCANode = React.lazy(() => import('../components/nodes/PCANode'));
-const SVDNode = React.lazy(() => import('../components/nodes/SVDNode'));
-const DescribeNode = React.lazy(() => import('../components/nodes/DescribeNode'));
-const DataTypeConverterNode = React.lazy(() => import('../components/nodes/DataTypeConverterNode'));
-const KMeansNode = React.lazy(() => import('../components/nodes/KMeansNode'));
-const DBSCANNode = React.lazy(() => import('../components/nodes/DBSCANNode'));
-const HierarchicalClusteringNode = React.lazy(() => import('../components/nodes/HierarchicalClusteringNode'));
-const MLPNode = React.lazy(() => import('../components/nodes/MLPNode'));
-const GenericVisualizerNode = React.lazy(() => import('../components/nodes/GenericVisualizerNode'));
-const StartNode = React.lazy(() => import('../components/nodes/StartNode'));
-
-// Loading component
-const NodeLoading = () => <div className="p-2 text-xs text-gray-400">Loading...</div>;
+// Eager load node components to prevent full screen suspenses when dragging new nodes
+import CsvReaderNode from '../components/nodes/CsvReaderNode';
+import DatabaseReaderNode from '../components/nodes/DatabaseReaderNode';
+import LinearRegressionNode from '../components/nodes/LinearRegressionNode';
+import MultiLinearRegressionNode from '../components/nodes/MultiLinearRegressionNode';
+import PolynomialRegressionNode from '../components/nodes/PolynomialRegressionNode';
+import KNNRegressionNode from '../components/nodes/KNNRegressionNode';
+import KNNClassificationNode from '../components/nodes/KNNClassificationNode';
+import DataCleanerNode from '../components/nodes/DataCleanerNode';
+import ModelVisualizerNode from '../components/nodes/ModelVisualizerNode';
+import EncoderNode from '../components/nodes/EncoderNode';
+import NormalizerNode from '../components/nodes/NormalizerNode';
+import LogisticRegressionNode from '../components/nodes/LogisticRegressionNode';
+import NaiveBayesNode from '../components/nodes/NaiveBayesNode';
+import DataVisualizerNode from '../components/nodes/DataVisualizerNode';
+import ModelEvaluatorNode from '../components/nodes/ModelEvaluatorNode';
+import FeatureSelectorNode from '../components/nodes/FeatureSelectorNode';
+import PCANode from '../components/nodes/PCANode';
+import SVDNode from '../components/nodes/SVDNode';
+import DescribeNode from '../components/nodes/DescribeNode';
+import DataTypeConverterNode from '../components/nodes/DataTypeConverterNode';
+import KMeansNode from '../components/nodes/KMeansNode';
+import DBSCANNode from '../components/nodes/DBSCANNode';
+import HierarchicalClusteringNode from '../components/nodes/HierarchicalClusteringNode';
+import MLPNode from '../components/nodes/MLPNode';
+import GenericVisualizerNode from '../components/nodes/GenericVisualizerNode';
+import StartNode from '../components/nodes/StartNode';
 
 let id = 1;
 const getId = () => `node_${id++}`;
@@ -140,6 +138,15 @@ const EditorPage = () => {
 
   const [activeTool, setActiveTool] = useState('select');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isBooting, setIsBooting] = useState(true);
+  const [showFlow, setShowFlow] = useState(false);
+
+  // Manual boot sequence triggered by GameOfLifeLoading Start button
+  const handleStart = useCallback(() => {
+    setIsBooting(false);
+    // Give time for fade out animation before showing flow
+    setTimeout(() => setShowFlow(true), 800);
+  }, []);
 
   const toggleSidebar = useCallback(() => {
     setIsSidebarOpen(prev => !prev);
@@ -484,6 +491,7 @@ const EditorPage = () => {
 
   return (
     <div className={`relative h-screen w-screen overflow-hidden bg-background text-foreground flex flex-col ${activeTool === 'pan' ? 'cursor-grab active:cursor-grabbing' : ''}`}>
+      {isBooting && <GameOfLifeLoading onStart={handleStart} fadeOut={showFlow} />}
       <TitleBar title={projectTitle} />
       <div className="flex-1 flex relative overflow-hidden mt-10">
         <div
@@ -503,41 +511,39 @@ const EditorPage = () => {
             onLoad={handleLoadProject}
             onMenuClick={toggleSidebar}
           />
-          <div className="reactflow-wrapper-new w-full h-full">
-            <Suspense fallback={<NodeLoading />}>
-              <ReactFlow
-                nodes={nodes}
-                edges={edges}
-                onNodesChange={onNodesChangeCallback}
-                onEdgesChange={onEdgesChangeCallback}
-                onConnect={onConnect}
-                onInit={setReactFlowInstance}
-                onDrop={onDrop}
-                onDragOver={onDragOver}
-                onNodeContextMenu={onNodeContextMenu}
-                onEdgeContextMenu={onEdgeContextMenu}
-                nodeTypes={nodeTypes}
-                edgeTypes={edgeTypes}
-                isValidConnection={isValidConnection}
-                fitView
-                fitViewOptions={{ maxZoom: 0.75 }}
-                proOptions={proOptions}
-                connectionMode={ConnectionMode.Loose}
-                defaultEdgeOptions={defaultEdgeOptions}
-                panOnDrag={activeTool === 'pan'}
-                selectionOnDrag={activeTool === 'select'}
-              >
-                <MiniMap
-                  style={{
-                    bottom: 60,
-                    right: 15,
-                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
-                  }}
-                  nodeColor="#888"
-                  maskColor="rgba(255, 255, 255, 0.7)"
-                />
-              </ReactFlow>
-            </Suspense>
+          <div className={`reactflow-wrapper-new w-full h-full transition-opacity duration-700 ${showFlow ? 'opacity-100' : 'opacity-0'}`}>
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              onNodesChange={onNodesChangeCallback}
+              onEdgesChange={onEdgesChangeCallback}
+              onConnect={onConnect}
+              onInit={setReactFlowInstance}
+              onDrop={onDrop}
+              onDragOver={onDragOver}
+              onNodeContextMenu={onNodeContextMenu}
+              onEdgeContextMenu={onEdgeContextMenu}
+              nodeTypes={nodeTypes}
+              edgeTypes={edgeTypes}
+              isValidConnection={isValidConnection}
+              fitView
+              fitViewOptions={{ maxZoom: 0.75 }}
+              proOptions={proOptions}
+              connectionMode={ConnectionMode.Loose}
+              defaultEdgeOptions={defaultEdgeOptions}
+              panOnDrag={activeTool === 'pan'}
+              selectionOnDrag={activeTool === 'select'}
+            >
+              <MiniMap
+                style={{
+                  bottom: 60,
+                  right: 15,
+                  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
+                }}
+                nodeColor="#888"
+                maskColor="rgba(255, 255, 255, 0.7)"
+              />
+            </ReactFlow>
 
             {contextMenu && (() => {
               const node = contextMenu.node;

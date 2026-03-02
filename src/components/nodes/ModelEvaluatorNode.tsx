@@ -687,7 +687,7 @@ const ModelEvaluatorNode = ({ id, data, isConnectable }) => {
         const kNearest = distances.slice(0, model.k);
 
         // Majority vote - count occurrences of each class
-        const classCounts = {};
+        const classCounts: Record<string, number> = {};
         kNearest.forEach(neighbor => {
           const label = neighbor.classLabel;
           classCounts[label] = (classCounts[label] || 0) + 1;
@@ -1226,13 +1226,13 @@ const ModelEvaluatorNode = ({ id, data, isConnectable }) => {
                           <div className="me-insight-label" style={{ marginBottom: '8px' }}>
                             {prediction.votes ? 'Neighbor Votes' : 'Class Probabilities'}
                           </div>
-                          {prediction.probabilities && Object.entries(prediction.probabilities).map(([key, val]) => (
+                          {prediction.probabilities && Object.entries(prediction.probabilities as Record<string, number>).map(([key, val]) => (
                             <div key={key} className={`me-prob-row ${parseFloat(key) === prediction.prediction ? 'active' : ''}`}>
                               <span>Class {key}</span>
                               <span style={{ fontWeight: 600 }}>{(val * 100).toFixed(1)}%</span>
                             </div>
                           ))}
-                          {prediction.votes && Object.entries(prediction.votes).map(([key, val]) => (
+                          {prediction.votes && Object.entries(prediction.votes as Record<string, number>).map(([key, val]) => (
                             <div key={key} className={`me-prob-row ${parseFloat(key) === prediction.prediction ? 'active' : ''}`}>
                               <span>Class {key}</span>
                               <span style={{ fontWeight: 600 }}>{val} votes</span>
@@ -1313,12 +1313,12 @@ const ModelEvaluatorNode = ({ id, data, isConnectable }) => {
                             })}
 
                             {/* DBSCAN LOGIC */}
-                            {prediction.clusterDistances && Object.entries(prediction.clusterDistances)
+                            {prediction.clusterDistances && Object.entries(prediction.clusterDistances as Record<string, number>)
                               .sort((a, b) => a[1] - b[1])
                               .slice(0, 5)
                               .map(([labelStr, dist]) => {
                                 const label = parseInt(labelStr);
-                                const maxDist = Math.max(...Object.values(prediction.clusterDistances)) || 1;
+                                const maxDist = Math.max(...(Object.values(prediction.clusterDistances) as number[])) || 1;
                                 const widthPerc = Math.max(5, (1 - (dist / (maxDist * 1.2))) * 100);
                                 const isSelected = label === prediction.prediction;
                                 return (

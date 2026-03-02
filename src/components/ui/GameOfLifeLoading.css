@@ -1,0 +1,118 @@
+.gol-loading-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+    background-size: 24px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+.gol-fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.gol-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+
+
+.gol-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background-color: transparent;
+    padding: 16px;
+    border: none;
+    box-shadow: none;
+}
+
+.gol-row {
+    display: flex;
+    gap: 2px;
+}
+
+.gol-cell {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.gol-cell.alive {
+    background-color: #000000;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.gol-cell.dead {
+    background-color: transparent;
+}
+
+
+.gol-generation {
+    margin-top: 1rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.85rem;
+    color: #9ca3af;
+    letter-spacing: 3px;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.gol-gen-number {
+    font-family: 'JetBrains Mono', monospace;
+    color: #4b5563;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.gol-start-btn {
+    margin-top: 1.5rem;
+    padding: 10px 30px;
+    background: transparent;
+    color: #000000;
+    border: 2px solid #000000;
+    font-family: monospace;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 2px;
+    border-radius: 4px;
+}
+
+.gol-start-btn:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
+.blink-cursor {
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
