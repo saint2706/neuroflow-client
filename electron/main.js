@@ -82,6 +82,11 @@ let mainWindow = null;
 async function createWindow() {
   await startBackend(); // Start backend when window creates (or app ready)
 
+  // hiddenInset is a macOS-only title bar style; keep native defaults on other platforms.
+  const titleBarOptions = process.platform === 'darwin'
+    ? { titleBarStyle: 'hiddenInset' }
+    : {};
+
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 800,
@@ -94,7 +99,7 @@ async function createWindow() {
       contextIsolation: true,
       sandbox: false, // Required for some preload scripts to work correctly with Vite in dev
     },
-    titleBarStyle: 'hiddenInset',
+    ...titleBarOptions,
   });
 
   console.log('Preload path:', path.join(__dirname, 'preload.js'));
