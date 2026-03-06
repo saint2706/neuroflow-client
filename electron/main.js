@@ -1,6 +1,7 @@
 import { app, BrowserWindow, shell, ipcMain, dialog } from 'electron';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { constants as fsConstants } from 'node:fs';
 import fs from 'node:fs/promises';
 import { spawn } from 'node:child_process'; // Import spawn
 
@@ -19,7 +20,7 @@ function logToFile(message) {
 }
 
 // Function to spawn backend
-function startBackend() {
+async function startBackend() {
   logToFile('Starting backend initialization...');
   if (isDev) {
     logToFile('In-dev mode: Backend should be started manually via uv run app.py');
@@ -27,8 +28,20 @@ function startBackend() {
   }
 
   const backendName = process.platform === 'win32' ? 'neuroflow-backend.exe' : 'neuroflow-backend';
-  const backendPath = path.join(process.resourcesPath, 'neuroflow-backend');
-  logToFile(`Looking for backend at: ${backendPath}`);
+  const backendPath = path.join(process.resourcesPath, 'neuroflow-backend', backendName);
+  logToFile(`Looking for backend executable at: ${backendPath}`);
+
+  try {
+    const accessMode = process.platform === 'win32'
+      ? fsConstants.F_OK
+      : fsConstants.F_OK | fsConstants.X_OK;
+    await fs.access(backendPath, accessMode);
+  } catch (err) {
+    logToFile(`Backend executable is missing or not accessible at: ${backendPath}. ${err.message}`);
+    return;
+  }
+
+  logToFile(`Launching backend executable: ${backendPath}`);
 
   backendProcess = spawn(backendPath, [], {
     stdio: ['ignore', 'pipe', 'pipe'], // Pipe stdout and stderr
@@ -36,15 +49,19 @@ function startBackend() {
   });
 
   backendProcess.stdout.on('data', (data) => {
-    logToFile(`BACKEND STDOUT: ${data}`);
+    logToFile(`BACKEND STDOUT (${backendPath}): ${data}`);
   });
 
   backendProcess.stderr.on('data', (data) => {
-    logToFile(`BACKEND STDERR: ${data}`);
+    logToFile(`BACKEND STDERR (${backendPath}): ${data}`);
   });
 
   backendProcess.on('error', (err) => {
-    logToFile(`Failed to start backend: ${err.message}`);
+    logToFile(`Failed to start backend from ${backendPath}: ${err.message}`);
+    dialog.showErrorBox(
+      'Backend Startup Failed',
+      `Neuroflow could not start its backend service.\n\nExpected backend executable:\n${backendPath}\n\nError: ${err.message}`
+    );
   });
 
   backendProcess.on('close', (code) => {
@@ -63,7 +80,7 @@ function stopBackend() {
 let mainWindow = null;
 
 async function createWindow() {
-  startBackend(); // Start backend when window creates (or app ready)
+  await startBackend(); // Start backend when window creates (or app ready)
 
   mainWindow = new BrowserWindow({
     width: 1280,
