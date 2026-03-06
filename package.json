@@ -11,7 +11,8 @@
     "dev:electron": "npm run electron:dev",
     "electron:dev": "cross-env VITE_DEV_SERVER_URL=http://localhost:5173 concurrently -k \"vite\" \"wait-on http://localhost:5173 && electron .\"",
     "electron:start": "electron .",
-    "electron:build": "vite build && electron-builder"
+    "electron:build": "npm run check:backend-resource && vite build && electron-builder",
+    "check:backend-resource": "node scripts/check-backend-resource.mjs"
   },
   "main": "electron/main.js",
   "dependencies": {
@@ -78,7 +79,7 @@
     ],
     "extraResources": [
       {
-        "from": "../neuroflow-logic/dist/neuroflow-backend",
+        "from": "artifacts/backend",
         "to": "neuroflow-backend"
       }
     ],

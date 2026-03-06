@@ -50,6 +50,15 @@ npm run electron:dev
 
 ### Building for Production
 
+Before packaging the Electron app, build the backend in `neuroflow-logic` and copy its compiled binary into this repository at a deterministic artifact path:
+
+- Linux: `artifacts/backend/linux/neuroflow-backend`
+- macOS: `artifacts/backend/macos/neuroflow-backend`
+- Windows: `artifacts/backend/windows/neuroflow-backend.exe`
+
+> [!IMPORTANT]
+> `npm run electron:build` runs `npm run check:backend-resource` first and fails immediately if the platform-specific backend artifact is missing.
+
 To build a standalone desktop application for your operating system:
 ```bash
 npm run electron:build
