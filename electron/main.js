@@ -167,7 +167,7 @@ ipcMain.handle('save-project', async (event, content) => {
   }
 });
 
-ipcMain.handle('load-project', async (event) => {
+ipcMain.handle('load-project', async () => {
   const { canceled, filePaths } = await dialog.showOpenDialog(mainWindow, {
     title: 'Load Project',
     properties: ['openFile'],
